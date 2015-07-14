@@ -4,6 +4,7 @@ var dialog = require('dialog');
 var fs = require('fs');
 var path = require('path');
 var ipc = require('ipc');
+var id3js = require('id3js');
 
 var walk = function (dir, done) {
 	var results = [];
@@ -48,13 +49,20 @@ app.on('ready', function () {
 	});
 
 	ipc.on('path', function (event, myPath) {
-		walk(myPath[0], function (err, results) {
+		walk(myPath, function (err, results) {
 			if (err) throw err;
 			for (var index = 0; index < results.length; index++) {
 				var element = results[index];
 				mainWindow.send('file', element);
 			}
 		});
-
 	});
+	
+	ipc.on('time',function(event, time){
+		//console.log(time);
+		var progress = ((time.currentTime * 100)/time.duration)/100.0;
+		//console.log(progress);
+		mainWindow.setProgressBar(progress);
+		mainWindow.send('progress',progress);
+	})
 });

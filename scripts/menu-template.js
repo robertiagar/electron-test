@@ -50,7 +50,7 @@ var template = [
 				label: 'Open Folder',
 				click: function () {
 					var path = dialog.showOpenDialog({ properties: ['openDirectory'] });
-					ipc.send('path', path);
+					ipc.send('path', path[0]);
 				}
 			},
         ]
