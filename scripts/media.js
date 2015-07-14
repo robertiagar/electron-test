@@ -1,4 +1,5 @@
 var ipc = require("ipc");
+window.$ = window.jQuery = require('jquery');
 
 ipc.on("file", function (value) {
 	var musicList = document.getElementById('music');
