@@ -5,6 +5,7 @@
 	"dependencies": {
 		"jquery": "*",
 		"bootstrap": "*",
-		"id3js": "*"
+		"id3js": "*",
+		"taglib": "*"
 	}
 }
